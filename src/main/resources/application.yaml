@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+spring:
+  profiles: 
+    active: localstub
+  application:
+    name: admin-eam-ddd
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/skadmin
+    username: skeam
+    password: q1w2e3r4Q!
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 3000
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sk.eadmin.biz.*
+  type-handlers-package: com.sk.eadmin.common.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+  
+external-api:
+  base-url: http://localhost:8085  
+  
+  
+  
+  

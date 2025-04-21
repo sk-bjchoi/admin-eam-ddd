@@ -1,0 +1,26 @@
+{
+  "id" : "fa24a034-5feb-4ff4-9814-2baee1213f6d",
+  "request" : {
+    "url" : "/check-problem-degree",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    },
+	"bodyPatterns": [
+	  { "matchesJsonPath": "$.problemDegree" },
+	  { "matchesJsonPath": "$.requestDesc" },
+	  { "matchesJsonPath": "$.problemCode" }
+	]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"score\":85}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template", "spring-cloud-contract" ]
+  },
+  "uuid" : "fa24a034-5feb-4ff4-9814-2baee1213f6d"
+}

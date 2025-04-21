@@ -1,0 +1,12 @@
+{
+  "id" : "a65af62c-853d-46ed-9023-45c3c0e56ab1",
+  "request" : {
+    "url" : "/send-warning-message",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 200,
+    "transformers" : [ "response-template", "spring-cloud-contract" ]
+  },
+  "uuid" : "a65af62c-853d-46ed-9023-45c3c0e56ab1"
+}

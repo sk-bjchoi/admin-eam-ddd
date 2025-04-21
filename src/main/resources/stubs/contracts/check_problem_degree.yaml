@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Customer Problem Degree API
+  version: 1.0.0
+  description: Check customer problem degree and return score
+
+paths:
+  /check-problem-degree:
+    post:
+      summary: Check customer problem degree
+      description: Accepts any valid JSON structure that conforms to schema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProblemRequest'
+            examples:
+              sampleRequest:
+                summary: Example input
+                value:
+                  problemDegree: 80
+                  requestDesc: "화면이 안 떠요"
+                  problemCode: "P001"
+      responses:
+        '200':
+          description: Score evaluation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemScore'
+              example:
+                score: 85
+
+components:
+  schemas:
+    ProblemRequest:
+      type: object
+      required:
+        - problemDegree
+        - requestDesc
+        - problemCode
+      properties:
+        problemDegree:
+          type: integer
+          description: Degree of the problem
+          example: 80
+        requestDesc:
+          type: string
+          description: Description of the issue
+          example: "화면이 안 떠요"
+        problemCode:
+          type: string
+          description: Problem code identifier
+          example: "P001"
+
+    ProblemScore:
+      type: object
+      properties:
+        score:
+          type: integer
+          description: Score returned after evaluation
+          example: 85

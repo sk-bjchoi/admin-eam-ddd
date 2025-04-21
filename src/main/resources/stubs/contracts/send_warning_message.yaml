@@ -1,0 +1,17 @@
+openapi: 3.0.3
+info:
+  title: Agent Warning Message API
+  version: 1.0.0
+  description: Send warning message to agent
+
+paths:
+  /send-warning-message:
+    post:
+      summary: Send warning to agent
+      description: Sends a warning message to the agent
+      requestBody:
+        required: false
+        content: {}
+      responses:
+        '200':
+          description: Warning message sent successfully
