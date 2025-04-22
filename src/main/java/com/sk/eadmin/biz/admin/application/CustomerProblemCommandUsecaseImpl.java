@@ -13,6 +13,8 @@ import com.sk.eadmin.biz.admin.domain.service.CustomerProblemDomainService;
 import com.sk.eadmin.biz.admin.port.external.ExternalAgentInterface;
 import com.sk.eadmin.biz.admin.port.repository.CustomerProblemCommandRepository;
 import com.sk.eadmin.biz.admin.port.usecase.CustomerProblemCommandUsecase;
+import com.sk.eadmin.common.exception.DomainException;
+import com.sk.eadmin.common.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
 
@@ -56,15 +58,19 @@ public class CustomerProblemCommandUsecaseImpl implements CustomerProblemCommand
 	@Override
 	public void modifyCustomerProblemRegist(ModifyCustomerProblemRegistInputDTO param) {
 		Long regId = Long.valueOf(param.getRegistID());
-		
-		Optional<CustomerProblemTicketEntity> entity = customerProblemCommandRepository.findCustomerProblemTicketById(regId);
-		entity.ifPresent(ticket -> ticket.checkTicketUpdatable());
 
+		// 1. 티켓 존재 여부 확인
+		CustomerProblemTicketEntity updateEntity = customerProblemCommandRepository.findCustomerProblemTicketById(regId)
+			.orElseThrow(() -> new DomainException(ErrorCode.NOT_EXIST_TICKET));
 		
-		CustomerProblemTicketEntity updateEntity = new CustomerProblemTicketEntity();
-		updateEntity.createUpdateDummyTicket(regId, param.getRequestDesc(), param.getProblemCode(), param.getProblemDegree());
-		updateEntity.addCustomerInfo(param.getCustomerName(), param.getCustomerMobile());
+		// 2. 티켓 수정 가능 여부 확인
+		updateEntity.checkTicketUpdatable();
+
+		// 3. 티켓 정보 수정
+		updateEntity.updateTicketInfo(param.getRequestDesc(), param.getProblemCode(), param.getProblemDegree());
+		updateEntity.updateCustomerInfo(param.getCustomerName(), param.getCustomerMobile());
 		
+		// 4. DB에 저장
 		customerProblemCommandRepository.update(updateEntity);
 		
 	}
@@ -72,10 +78,15 @@ public class CustomerProblemCommandUsecaseImpl implements CustomerProblemCommand
 	@Override
 	public void deleteCustomerProblemRegist(Integer registID) {
 		Long regId = Long.valueOf(registID);
+
+		// 1. 티켓 존재 여부 확인
+		CustomerProblemTicketEntity deleteEntity = customerProblemCommandRepository.findCustomerProblemTicketById(regId)
+			.orElseThrow(() -> new DomainException(ErrorCode.NOT_EXIST_TICKET));
+
+		// 2. 티켓 삭제 가능 여부 확인
+		deleteEntity.checkTicketDeletable();
 		
-		Optional<CustomerProblemTicketEntity> entity = customerProblemCommandRepository.findCustomerProblemTicketById(regId);
-		entity.ifPresent(ticket -> ticket.checkTicketDeletable());
-		
+		// 3. DB에서 삭제
 		customerProblemCommandRepository.delete(regId);
 	}
 }

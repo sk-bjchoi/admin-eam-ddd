@@ -84,11 +84,12 @@ class AdminEamDddUsecaseTest {
                 .build();
         
         CustomerProblemTicketEntity testEntity = new CustomerProblemTicketEntity();
-        testEntity.createUpdateDummyTicket(1L, "그냥 이상해요....", "0001", 50);
+        testEntity.createNewTicket("그냥 이상해요....", "0001", 50);
         testEntity.addCustomerInfo("홍길동", "01012345678");
 
         List<CustomerProblemTicketEntity> sameMobileTickets = List.of(testEntity);
         
+        // 동일한 핸드 번호로 되어 있는 티켓을 등록하러 하여서 정책 위반
         when(repository.findCustomerProblemTicketByCustomerMobile("01012345678"))
                 .thenReturn(sameMobileTickets);
 
