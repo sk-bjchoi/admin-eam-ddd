@@ -79,7 +79,7 @@ class AdminEamDddUsecaseTest {
                 .customerMobile("01012345678")
                 .customerName("홍길동")
                 .requestDesc("앱이 자꾸 꺼져요")
-                .problemCode("P001")
+                .problemCode("0001")
                 .problemDegree(80)
                 .build();
         
@@ -111,7 +111,7 @@ class AdminEamDddUsecaseTest {
                 .customerMobile("01000000000")
                 .customerName("고객")
                 .requestDesc("화면이 안 떠요")
-                .problemCode("P002")
+                .problemCode("0001")
                 .problemDegree(90)
                 .build();
 
