@@ -92,29 +92,7 @@ public class CustomerProblemController {
     @RequestParam(name = "requestFilter", required = false)
     String requestFilter
   ) {
-    final List<CustomerProblemRegistOutputDTO> serviceResults = customerProblemQueryUsecase.getCustomerProblemRegistList(
-      CustomerProblemRegistInputDTO.builder()
-        .problemCode(problemCode)
-        .agentRegionCode(agentRegionCode)
-        .progressStatusCode(progressStatusCode)
-        .requestDesc(requestFilter).build()
-	  );
-    List<CustomerProblemRegistResDTO> rets = new ArrayList<CustomerProblemRegistResDTO>();      
-    for (CustomerProblemRegistOutputDTO serviceResult: serviceResults) {
-      final CustomerProblemRegistResDTO retObject = CustomerProblemRegistResDTO.builder()
-	      .regId(serviceResult.getRegId())
-	      .custNm(serviceResult.getCustNm())
-	      .custMbl(serviceResult.getCustMbl())
-	      .reqDesc(serviceResult.getReqDesc())
-	      .prbmCd(serviceResult.getPrbmCd())
-	      .prbmDgr(serviceResult.getPrbmDgr())
-	      .prgsSts(serviceResult.getPrgsSts())
-	      .prgsStsVal(serviceResult.getPrgsStsVal())
-	      .crteDttm(serviceResult.getCrteDttm())
-	      .agntIcn(serviceResult.getAgntIcn()).build();
-	   rets.add(retObject);
-	 }
-	 return new ResponseEntity<List<CustomerProblemRegistResDTO>>(rets, HttpStatus.OK);
+	 return new ResponseEntity<List<CustomerProblemRegistResDTO>>(new ArrayList<CustomerProblemRegistResDTO>(), HttpStatus.OK);
   }
 
   @Operation(summary = "고객접수문의 상세 조회", description = "입력조건에 따라 접수된 고객 문의 상세 정보를 조회한다.")
@@ -133,28 +111,10 @@ public class CustomerProblemController {
 	)
 	@PathVariable(name = "id") int registID
 ) {
-    final CustomerProblemRegistDetailInfoOutputDTO serviceResult = customerProblemQueryUsecase.getCustomerProblemRegistDetail(registID);
-    List<CustomerProblemRegistDetailInfoResDTO.CustomerProblemMappingAgentResDTO> serviceAgentResult
-      = new ArrayList<CustomerProblemRegistDetailInfoResDTO.CustomerProblemMappingAgentResDTO>();
-    for (CustomerProblemRegistDetailInfoOutputDTO.Agent agent: serviceResult.getAgents()) {
-      final CustomerProblemRegistDetailInfoResDTO.CustomerProblemMappingAgentResDTO subServiceAgentResult
-        = CustomerProblemRegistDetailInfoResDTO.CustomerProblemMappingAgentResDTO.builder()
-          .agntNm(agent.getAgntNm())
-          .agntRegnCd(agent.getAgntRegnCd())
-          .agentRegnVal(agent.getAgentRegnVal()).build();
-      serviceAgentResult.add(subServiceAgentResult);
-    }
-    final CustomerProblemRegistDetailInfoResDTO.CustomerProblemResistResDTO problemMain
-      = CustomerProblemRegistDetailInfoResDTO.CustomerProblemResistResDTO.builder()
-        .custNm(serviceResult.getCustNm())
-        .reqDesc(serviceResult.getReqDesc())
-        .custMbl(serviceResult.getCustMbl())
-        .prgsSts(serviceResult.getPrgsSts())
-        .crteDttm(serviceResult.getCrteDttm()).build();
     return new ResponseEntity<CustomerProblemRegistDetailInfoResDTO>(
       CustomerProblemRegistDetailInfoResDTO.builder()
-        .customerProblemResistResDTO(problemMain)
-        .customerProblemMappingAgentResDTO(serviceAgentResult).build(),
+        .customerProblemResistResDTO(null)
+        .customerProblemMappingAgentResDTO(null).build(),
       HttpStatus.OK
     );
   }
@@ -167,16 +127,6 @@ public class CustomerProblemController {
   )
   @PostMapping("/customer-problem")
   public ResponseEntity<Void> addCustomerProblemRegist(@RequestBody CustomerProblemRegistReqDTO req) {
-	customerProblemCommandUsecase.addCustomerProblemRegist(
-	  AddCustomerProblemRegistInputDTO.builder()
-	    .customerName(req.getCustomerName())
-	    .customerMobile(req.getCustomerMobile())
-	    .requestDesc(req.getRequestDesc())
-	    .problemCode(req.getProblemCode())
-	    .problemDegree(req.getProblemDegree())
-	    .progressStatusCode(req.getProgressStatusCode())
-	    .reqestID(req.getTestID()).build()
-    );
     return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
   }
   
@@ -197,17 +147,7 @@ public class CustomerProblemController {
 	@PathVariable(name = "id") int registID,
 	@Valid @RequestBody CustomerProblemRegistReqDTO req
   ) {
-	  customerProblemCommandUsecase.modifyCustomerProblemRegist(
-	  ModifyCustomerProblemRegistInputDTO.builder()
-	    .registID(registID)
-		.customerName(req.getCustomerName())
-		.customerMobile(req.getCustomerMobile())
-		.requestDesc(req.getRequestDesc())
-		.problemCode(req.getProblemCode())
-		.problemDegree(req.getProblemDegree())
-		.progressStatusCode(req.getProgressStatusCode())
-		.reqestID(req.getTestID()).build()
-	);
+
 	return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
   }
   
@@ -227,7 +167,6 @@ public class CustomerProblemController {
 	)
     @PathVariable(name = "id") int registID
   ) {
-	  customerProblemCommandUsecase.deleteCustomerProblemRegist(registID);
 	  return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
   }
   

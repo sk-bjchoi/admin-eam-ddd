@@ -17,14 +17,4 @@ import lombok.RequiredArgsConstructor;
 public class CustomerProblemQueryUsecaseImpl implements CustomerProblemQueryUsecase {
 	
 	private final CustomerProblemQueryRepository customerProblemQueryRepository;
-	
-	@Override
-	public List<CustomerProblemRegistOutputDTO> getCustomerProblemRegistList(CustomerProblemRegistInputDTO param) {
-		return customerProblemQueryRepository.getCustomerProblemRegistList(param);
-	}
-	
-	@Override
-	public CustomerProblemRegistDetailInfoOutputDTO getCustomerProblemRegistDetail(Integer registID) {
-		return customerProblemQueryRepository.getCustomerProblemRegistDetail(registID);
-	}
 }
