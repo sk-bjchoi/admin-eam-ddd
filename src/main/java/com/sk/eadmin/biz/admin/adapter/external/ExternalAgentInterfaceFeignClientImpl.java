@@ -5,8 +5,6 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import com.sk.eadmin.biz.admin.port.external.ExternalAgentInterface;
-import com.sk.eadmin.biz.admin.port.usecase.CustomerProblemCommandUsecase;
-import com.sk.eadmin.biz.admin.port.usecase.CustomerProblemQueryUsecase;
 
 import lombok.RequiredArgsConstructor;
 
