@@ -19,32 +19,29 @@ public class CustomerProblemCommandRepositoryMybatisImpl implements CustomerProb
 	
 	@Override
 	public Optional<CustomerProblemTicketEntity> findCustomerProblemTicketById(Long id) {
-		return customerProblemCommandMapper.findCustomerProblemTicketById(id);
+		return null;
 	}
 
 	@Override
 	public List<CustomerProblemTicketEntity> findCustomerProblemTicketByCustomerMobile(String mobile) {
-		return customerProblemCommandMapper.findCustomerProblemTicketByCustomerMobile(mobile);
+		return null;
 	}
 
 	@Override
 	public List<CustomerProblemAgentEntity> findAvailableAgent() {
-		return customerProblemCommandMapper.findAvailableAgent();
+		return null;
 	}
 
 	@Override
 	public void save(CustomerProblemTicketEntity entity) {
-		customerProblemCommandMapper.addCustomerProblemRegist(entity);
 	}
 	
 	@Override
 	public void update(CustomerProblemTicketEntity entity) {
-		customerProblemCommandMapper.modifyCustomerProblemRegist(entity);
 	}
 	
 	@Override
 	public void delete(Long id) {
-		customerProblemCommandMapper.deleteCustomerProblemRegist(id);
 	}
 
 }

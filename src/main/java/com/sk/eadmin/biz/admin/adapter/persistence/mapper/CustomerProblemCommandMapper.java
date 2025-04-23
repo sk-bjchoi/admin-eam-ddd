@@ -11,13 +11,4 @@ import com.sk.eadmin.biz.admin.domain.entity.CustomerProblemTicketEntity;
 
 @Mapper
 public interface CustomerProblemCommandMapper {
-	
-	int addCustomerProblemRegist(CustomerProblemTicketEntity param);
-	int modifyCustomerProblemRegist(CustomerProblemTicketEntity param);
-	int deleteCustomerProblemRegist(Long id);
-	
-	Optional<CustomerProblemTicketEntity> findCustomerProblemTicketById(Long id);
-	List<CustomerProblemTicketEntity> findCustomerProblemTicketByCustomerMobile(String mobile);
-	List<CustomerProblemAgentEntity> findAvailableAgent();
-	
 }

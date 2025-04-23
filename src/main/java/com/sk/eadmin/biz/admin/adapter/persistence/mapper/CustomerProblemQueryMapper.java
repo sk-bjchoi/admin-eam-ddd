@@ -11,9 +11,4 @@ import com.sk.eadmin.biz.admin.application.dto.CustomerProblemRegistMapperOutput
 
 @Mapper
 public interface CustomerProblemQueryMapper {
-	
-	List<CustomerProblemRegistMapperOutputDTO> getCustomerProblemRegistList(CustomerProblemRegistMapperInputDTO param);
-	CustomerProblemRegistMapperOutputDTO getCustomerProblemRegistDetail(int registID);
-	List<CustomerProblemMappingAgentMapperOutputDTO> getCustomerProblemMappingAgentList(int registID);
-	
 }

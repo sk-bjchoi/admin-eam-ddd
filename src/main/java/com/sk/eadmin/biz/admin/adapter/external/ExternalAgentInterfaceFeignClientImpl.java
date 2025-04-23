@@ -16,18 +16,10 @@ public class ExternalAgentInterfaceFeignClientImpl implements ExternalAgentInter
 
     @Override
     public Integer checkCustomerProblemDegree(Integer problemDegree, String requestDesc, String problemCode) {
-        Map<String, Object> body = Map.of(
-                "problemDegree", problemDegree,
-                "requestDesc", requestDesc,
-                "problemCode", problemCode
-        );
-
-        Map<String, Object> response = externalAgentFeignClient.checkProblemDegree(body);
-        return (Integer) response.get("score");
+        return (Integer) 0;
     }
 
     @Override
     public void sendWarningMessage() {
-        externalAgentFeignClient.sendWarningMessage();
     }
 }
