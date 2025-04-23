@@ -33,7 +33,7 @@ public class CustomerProblemRegistReqDTO {
 	description = "문의코드(문의코드. 0001 - 사용요금관련, 0002 - 통화품질관련, 0003 - 대리점 서비스 관련, 0004 - 해외 로밍 관련)",
 	name = "problemCode",
 	type = "string",
-	example = "01"
+	example = "0001"
   )
   private String problemCode;
 
@@ -41,12 +41,12 @@ public class CustomerProblemRegistReqDTO {
 	description = "고객불만게이지(1~100)",
 	name = "problemDegree",
 	type = "number",
-	example = "1"
+	example = "70"
   )
   private Integer problemDegree;
 
   @Schema(
-	description = "처리상태코드",
+	description = "처리상태코드(상태코드. 01 - 성공, 02 - 대기)",
 	name = "progressStatusCode",
 	type = "string",
 	example = "01"
