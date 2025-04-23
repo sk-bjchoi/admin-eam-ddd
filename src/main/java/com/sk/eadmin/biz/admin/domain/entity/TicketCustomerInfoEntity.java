@@ -10,17 +10,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TicketCustomerInfoEntity extends CommonEntity {
-	private String customerName;
-	private String customerMobile;
-	
-	public void checkValidateCustomerMobile() {
-		if (!this.customerMobile.substring(0, 3).equals("010"))
-			throw new DomainException(ErrorCode.INVALID_CUSTOMER_MOBILE);
-	}
-
+public class TicketCustomerInfoEntity {
+	private String toDo;
 }

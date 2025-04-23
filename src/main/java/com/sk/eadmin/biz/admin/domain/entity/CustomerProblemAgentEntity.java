@@ -10,18 +10,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerProblemAgentEntity extends TMFParty {
-	private String agentID;
-	private String agentName;
-	private AgentRegionVO agentRegion;
-	private String agentIcon;
-	
-	public void checkAgentAvailable() {
-		// To-Do ...
-	}
-
+public class CustomerProblemAgentEntity {
+	private String toDo;
 }

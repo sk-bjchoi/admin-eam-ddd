@@ -8,10 +8,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum AgentRegionVO implements CodeEnum {
-	REGION_SEOUL		("01", "서울"),
-	REGION_GYEONGGI		("02", "경기"),
-	REGION_INCHEON		("03", "인천");
-
+	TO_DO				("", "");
+	
     private final String code;
     private final String desc;
 }

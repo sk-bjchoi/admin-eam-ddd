@@ -7,10 +7,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ProgressStatusVO implements CodeEnum {
-	PROGRESS_SUCCESS	("01", "Success"),
-	PROGRESS_HOLD		("02", "Hold"),
-	PROGRESS_COMPLETE	("03", "Complete");
+public enum ProgressStatusVO implements CodeEnum  {
+	TO_DO				("", "");
 	
     private final String code;
     private final String desc;

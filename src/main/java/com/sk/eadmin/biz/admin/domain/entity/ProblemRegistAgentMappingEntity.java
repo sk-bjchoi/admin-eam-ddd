@@ -7,17 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProblemRegistAgentMappingEntity extends CommonEntity {
-	private long registID;
-	private String agentID;
-	private long taskProgressRate;
-	
-	public void addNewMapping() {
-		// To-Do ...
-	}
-
+public class ProblemRegistAgentMappingEntity {
+	private String toDo;
 }

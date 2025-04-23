@@ -17,22 +17,4 @@ public class AdminEamDddApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AdminEamDddApplication.class, args);
 	}
-	
-    @Bean(destroyMethod = "stop")
-    @Profile("localstub")
-    WireMockServer wireMockServer() {
-        WireMockConfiguration config = WireMockConfiguration.options()
-                .port(8085)
-                .usingFilesUnderDirectory("src/main/resources/stubs"); 
-
-        WireMockServer server = new WireMockServer(config);
-        server.start();
-        return server;
-    }
-
-    @Bean
-    @Profile("localstub")
-    CommandLineRunner printStubInfo(WireMockServer server) {
-        return args -> System.out.println("✅ WireMock Stub running at: http://localhost:" + server.port());
-    }
 }
