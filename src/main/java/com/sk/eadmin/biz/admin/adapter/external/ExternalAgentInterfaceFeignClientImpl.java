@@ -2,32 +2,33 @@ package com.sk.eadmin.biz.admin.adapter.external;
 
 import java.util.Map;
 
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sk.eadmin.biz.admin.port.external.ExternalAgentInterface;
 
 @Component
-@FeignClient(name = "external-agent-api", url = "${external-api.base-url}")
-public interface ExternalAgentInterfaceFeignClientImpl extends ExternalAgentInterface {
+public class ExternalAgentInterfaceFeignClientImpl implements ExternalAgentInterface {
 
-    @PostMapping("/check-problem-degree")
-    Map<String, Object> checkProblemDegree(@RequestBody Map<String, Object> body);
+    private final ExternalAgentFeignClient externalAgentFeignClient;
 
-    @PostMapping("/send-warning-message")
-    void sendWarningMessage();
+    public ExternalAgentInterfaceFeignClientImpl(ExternalAgentFeignClient externalAgentFeignClient) {
+        this.externalAgentFeignClient = externalAgentFeignClient;
+    }
 
     @Override
-    default Integer checkCustomerProblemDegree(Integer problemDegree, String requestDesc, String problemCode) {
+    public Integer checkCustomerProblemDegree(Integer problemDegree, String requestDesc, String problemCode) {
         Map<String, Object> body = Map.of(
                 "problemDegree", problemDegree,
                 "requestDesc", requestDesc,
                 "problemCode", problemCode
         );
 
-        Map<String, Object> response = checkProblemDegree(body);
+        Map<String, Object> response = externalAgentFeignClient.checkProblemDegree(body);
         return (Integer) response.get("score");
+    }
+
+    @Override
+    public void sendWarningMessage() {
+        externalAgentFeignClient.sendWarningMessage();
     }
 }
