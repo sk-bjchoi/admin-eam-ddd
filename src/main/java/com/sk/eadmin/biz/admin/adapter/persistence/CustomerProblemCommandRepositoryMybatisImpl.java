@@ -16,32 +16,4 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerProblemCommandRepositoryMybatisImpl implements CustomerProblemCommandRepository {
 	private final CustomerProblemCommandMapper customerProblemCommandMapper;
-	
-	@Override
-	public Optional<CustomerProblemTicketEntity> findCustomerProblemTicketById(Long id) {
-		return null;
-	}
-
-	@Override
-	public List<CustomerProblemTicketEntity> findCustomerProblemTicketByCustomerMobile(String mobile) {
-		return null;
-	}
-
-	@Override
-	public List<CustomerProblemAgentEntity> findAvailableAgent() {
-		return null;
-	}
-
-	@Override
-	public void save(CustomerProblemTicketEntity entity) {
-	}
-	
-	@Override
-	public void update(CustomerProblemTicketEntity entity) {
-	}
-	
-	@Override
-	public void delete(Long id) {
-	}
-
 }

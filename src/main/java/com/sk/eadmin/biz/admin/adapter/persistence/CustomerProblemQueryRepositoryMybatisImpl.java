@@ -21,14 +21,4 @@ import lombok.RequiredArgsConstructor;
 public class CustomerProblemQueryRepositoryMybatisImpl implements CustomerProblemQueryRepository {
 	private final CustomerProblemQueryMapper customerProblemQueryMapper;
 
-	@Override
-	public List<CustomerProblemRegistOutputDTO> getCustomerProblemRegistList(CustomerProblemRegistInputDTO input) {
-	    return null;
-	}
-
-	@Override
-	public CustomerProblemRegistDetailInfoOutputDTO getCustomerProblemRegistDetail(int registID) {
-	    return null;
-	}
-
 }

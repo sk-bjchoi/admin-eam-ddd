@@ -12,14 +12,4 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ExternalAgentInterfaceFeignClientImpl implements ExternalAgentInterface {
     private final ExternalAgentFeignClient externalAgentFeignClient;
-
-
-    @Override
-    public Integer checkCustomerProblemDegree(Integer problemDegree, String requestDesc, String problemCode) {
-        return (Integer) 0;
-    }
-
-    @Override
-    public void sendWarningMessage() {
-    }
 }
